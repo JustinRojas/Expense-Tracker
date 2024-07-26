@@ -1,0 +1,111 @@
+html {
+    font-size: 14px;
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+    position: relative;
+    min-height: 100%;
+    font-family: "Inter";
+}
+*:not(.fa-solid):not(.fa):not(e-icons){
+    font-family:"Inter";
+} 
+
+body {
+    margin-bottom: 60px;
+    background-color: black;
+}
+/*
+BUTTON*/
+.btn-focus, btn-active{
+    outline: none !important;
+    box-shadow: none;
+}
+
+/*HYPERLINKS*/
+.no-a-decoretion, .no-a-decoretion:hover{
+    text-decoration:none;
+    color:inherit;
+}
+
+.e-bigger {
+    font-size: x-mediun;
+}
+
+/*radio button hgroup styles*/
+
+.e-btn-group.custom-rbt-group {
+    width: 100%;
+}
+
+    .e-btn-group.custom-rbt-group .e-btn {
+        width: 50%;
+    }
+
+.custom-rbt-group label.e-btn {
+    box-shadow: none !important;
+    border: 1px solid #fff;
+    background-color: rgb(34 43 51);
+    color: #fff;
+}
+
+.e-btn-group.custom-rbt-group input:checked + label.e-btn {
+    border: 1px solid blue;
+    background-color: #fff;
+    color: #212b36;
+}
+
+/*WIDGET*/
+
+.widget {
+    border-radius: 1rem;
+    background-color: #00165A;
+    color:aliceblue;
+}
+
+/*GRID*/
+
+.e-grid {
+    border: 0;
+    border-radius: 5px;
+}
+
+    .e-grid .e-gridcontent, .e-grid .e-table {
+        background-color: #1a222b;
+    }
+
+    .e-grid .e-gridheader {
+        border: 5px;
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+        padding: 10px;
+        background-color: #222b33;
+    }
+
+   /* BREADCRUMB*/
+   .e-breadcrumb a, .e-breadcrumb a:hover{
+       text-decoration: none !important;
+       color: inherit !important;
+   }
+
+   /*CALENDER*/
+
+.e-title {
+    font-size: 24px;
+    color: aliceblue;
+}
+
+.e-input-group .e-input-group-icon:last-child, .e-input-group.e-control-wrapper .e-input-group-icon:last-child {
+    font-size: 12px;
+    background-color: blueviolet;
+}
