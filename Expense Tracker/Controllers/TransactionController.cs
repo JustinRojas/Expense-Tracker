@@ -21,15 +21,16 @@ namespace Expense_Tracker.Controllers
         // GET: Transaction
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Transactions.ToListAsync());
+            var aplicationDbContext = _context.Transactions.Include(t => t.Categoria);
+            return View(await aplicationDbContext.ToListAsync());
         }
 
 
         public IActionResult AddOrEdit()
         {
-            //Como el modelo Transaction tiene una llave foranea de categoria, se debe hacer de esta forma
-            //haciendo uso del ViewData y referenciando de este modo para crear una transaction
-            ViewData["CategoryId"] = new SelectList(_context.Categories, "CategoryId", "CategoryId");
+            //LLamamos la funcion que creamos en la parte final de este controller que devuelve una coleccion 
+            //de las categorias que se encuentran en la bd
+            PopulateCategories();
             return View( new Transaction());
         }
 
@@ -65,6 +66,19 @@ namespace Expense_Tracker.Controllers
 
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
+        }
+
+        [NonAction]
+        public void PopulateCategories()
+        {
+            //aca se le pasa las categorias existentes en la bd a la vairable CategoriesCollection que es una coleccion
+            var CategoriesCollection = _context.Categories.ToList();
+            // Se pone la categoria por defecto para que apareza en el DrowDownList
+            Categoria DefaultCategory = new Categoria() { CategoryId = 0, Title = "Choose a Category" };
+            //Insertamos en la coleccion de categorias la categoria que creamos en el paso anterior
+            CategoriesCollection.Insert(0, DefaultCategory);
+            //Lo pasamos al elemento ViewBag para poder pasar la lista al frontend
+            ViewBag.Categories = CategoriesCollection;
         }
 
      
