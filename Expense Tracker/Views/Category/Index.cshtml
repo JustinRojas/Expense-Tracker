@@ -24,7 +24,8 @@
             <i class="fa-solid fa-shapes fa-2xl text-light"></i>
         </div>
     </div>
-
+    
+   
     
 </div>
 
@@ -44,9 +45,11 @@ para la funciones o los botones *@
           </a>
         <form action="/Category/Delete/${CategoryId}" method="post">
             @Html.AntiForgeryToken()
-              <button type="submit" class="btn btn-sm btn-link no-a-decoretion"
+              <button type="submit"  class="btn btn-sm btn-link no-a-decoretion"
             onclick="return confirm(&quot;Are you sure to delete this record?&quot;)">
                   <i class="fa-solid fa-trash-can fa-lg text-danger"> </i>
           </form>
       </div>
+      
 </script>
+
