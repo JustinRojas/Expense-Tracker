@@ -26,32 +26,53 @@ namespace Expense_Tracker.Controllers
         }
 
 
-        public IActionResult AddOrEdit()
+        //public IActionResult AddOrEdit( int id=0)
+        //{
+        //    //LLamamos la funcion que creamos en la parte final de este controller que devuelve una coleccion 
+        //    //de las categorias que se encuentran en la bd
+
+        //    PopulateCategories();
+        //    if(id == 0)
+        //        return View(new Transaction());
+        //    else
+        //    return View( _context.Transactions.Find(id));
+        //}
+        // GET: Transaction/AddOrEdit
+        public IActionResult AddOrEdit(int id = 0)
         {
-            //LLamamos la funcion que creamos en la parte final de este controller que devuelve una coleccion 
-            //de las categorias que se encuentran en la bd
             PopulateCategories();
-            return View( new Transaction());
+            if (id == 0)
+                return View(new Transaction());
+            else
+                return View(_context.Transactions.Find(id));
         }
 
-    
+
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+       
         public async Task<IActionResult> AddOrEdit([Bind("TransactionId,CategoryId,Amount,Note,Date")] Transaction transaction)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(transaction);
+                if (transaction.TransactionId == 0)
+                    _context.Add(transaction);
+                else
+                    _context.Update(transaction);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            //Como hay llave foranea la forma de seleccionar para crear un elemento es la siguiente
+            // crea una lista seleccionando del contexto las donde el CategoryId en las tablas 
+            // Categories y transactions coinciden
+            PopulateCategories();
             return View(transaction);
         }
 
 
 
-   
+
 
         // POST: Transaction/Delete/5
         [HttpPost, ActionName("Delete")]
