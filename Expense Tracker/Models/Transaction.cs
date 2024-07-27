@@ -19,12 +19,22 @@ namespace Expense_Tracker.Models
         public DateTime Date { get; set; } = DateTime.Now;
 
         [NotMapped]
-        public string? CategoryTitleWithIcon
+       public string? CategoryTitleWithIcon
         {
             get
             {
-                return Categoria == null ? "": Categoria.Icon + " " + Categoria.Title;
+                return (Categoria == null ? " " : Categoria.Icon + " " + Categoria.Title);
             }
         }
+
+        [NotMapped]
+        public string? FormattedAmount
+        {
+            get
+            {
+                return ((Categoria == null || Categoria.Type == "Expense") ? "- " : "+ ") + Amount.ToString("C0");
+            }
+        }
+
     }
 }
