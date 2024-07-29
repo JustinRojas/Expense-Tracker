@@ -34,7 +34,7 @@ namespace Expense_Tracker.Controllers
         {
 
             if(id == 0)
-            return View( new Categoria());
+            return View( new Category());
             else
                 return View(_context.Categories.Find(id));
         }
@@ -44,7 +44,7 @@ namespace Expense_Tracker.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> AddOrEdit([Bind("CategoryId,Title,Icon,Type")] Categoria categoria)
+        public async Task<IActionResult> AddOrEdit([Bind("CategoryId,Title,Icon,Type")] Category categoria)
         {
             if (ModelState.IsValid)
             {

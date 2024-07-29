@@ -10,7 +10,7 @@ namespace Expense_Tracker.Models
 
         [Range(1, int.MaxValue, ErrorMessage = "Please select a category.")]
         public int CategoryId { get; set; }
-        public Categoria? Categoria { get; set; }
+        public Category? Category { get; set; }
 
         [Range(1, int.MaxValue, ErrorMessage = "Amount should be greater than 0.")]
         public int Amount { get; set; }
@@ -25,7 +25,7 @@ namespace Expense_Tracker.Models
         {
             get
             {
-                return (Categoria == null ? " " : Categoria.Icon + " " + Categoria.Title);
+                return (Category == null ? " " : Category.Icon + " " + Category.Title);
             }
         }
 
@@ -34,7 +34,7 @@ namespace Expense_Tracker.Models
         {
             get
             {
-                return ((Categoria == null || Categoria.Type == "Expense") ? "- " : "+ ") + Amount.ToString("C0");
+                return ((Category == null || Category.Type == "Expense") ? "- " : "+ ") + Amount.ToString("C0");
             }
         }
 

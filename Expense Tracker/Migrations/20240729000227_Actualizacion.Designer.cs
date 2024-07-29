@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Expense_Tracker.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240719183850_Initial migration")]
-    partial class Initialmigration
+    [Migration("20240729000227_Actualizacion")]
+    partial class Actualizacion
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -25,7 +25,7 @@ namespace Expense_Tracker.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("Expense_Tracker.Models.Categoria", b =>
+            modelBuilder.Entity("Expense_Tracker.Models.Category", b =>
                 {
                     b.Property<int>("CategoryId")
                         .ValueGeneratedOnAdd()
@@ -35,7 +35,7 @@ namespace Expense_Tracker.Migrations
 
                     b.Property<string>("Icon")
                         .IsRequired()
-                        .HasColumnType("nvarchar(10)");
+                        .HasColumnType("nvarchar(5)");
 
                     b.Property<string>("Title")
                         .IsRequired()
@@ -61,9 +61,6 @@ namespace Expense_Tracker.Migrations
                     b.Property<int>("Amount")
                         .HasColumnType("int");
 
-                    b.Property<int>("CategoriaCategoryId")
-                        .HasColumnType("int");
-
                     b.Property<int>("CategoryId")
                         .HasColumnType("int");
 
@@ -75,20 +72,20 @@ namespace Expense_Tracker.Migrations
 
                     b.HasKey("TransactionId");
 
-                    b.HasIndex("CategoriaCategoryId");
+                    b.HasIndex("CategoryId");
 
                     b.ToTable("Transactions");
                 });
 
             modelBuilder.Entity("Expense_Tracker.Models.Transaction", b =>
                 {
-                    b.HasOne("Expense_Tracker.Models.Categoria", "Categoria")
+                    b.HasOne("Expense_Tracker.Models.Category", "Category")
                         .WithMany()
-                        .HasForeignKey("CategoriaCategoryId")
+                        .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Categoria");
+                    b.Navigation("Category");
                 });
 #pragma warning restore 612, 618
         }
