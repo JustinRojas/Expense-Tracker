@@ -32,7 +32,7 @@
                        *@
                         <e-dropdownlist-fields value="CategoryId" text="TitleWithIcon"> </e-dropdownlist-fields>
                         </ejs-dropdownlist>
-
+                    <span asp-validation-for="CategoryId" class="text-danger"> </span>
                    
                 </div>
                 <div class="mb-3">
@@ -61,6 +61,7 @@
 
 
 
-@section Scripts {
+@* @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
+ *@
