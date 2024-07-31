@@ -40,7 +40,8 @@ namespace Expense_Tracker.Controllers
 
             ViewBag.TotalExpense = TotalExpense.ToString("C0");//se pasa el total a la variable Viewbag.TotalExpense para ser llamado en la vista
            
-            int Balance = 
+            //Balance
+            int Balance = TotalIncome - TotalExpense;
             return View();
         }
     }
