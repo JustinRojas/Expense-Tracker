@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Syncfusion.EJ2.Linq;
+using System.Globalization;
 using System.Transactions;
 
 namespace Expense_Tracker.Controllers
@@ -22,7 +23,7 @@ namespace Expense_Tracker.Controllers
             //se crea una lista de transacciones y se le pasa lo que se encuentra en la BD, haciendo filtro 
             //con la fecha de los ultimos 7 dias, 
             List<Models.Transaction> SelectedTransactions = await _context.Transactions.
-                Include(x => x.CategoryId)
+                Include(x => x.Category)
                 .Where(y => y.Date >= StarDate && y.Date <= EndDate)
                 .ToListAsync();
 
@@ -31,17 +32,23 @@ namespace Expense_Tracker.Controllers
                 .Where(i => i.Category.Type == "Income")
                 .Sum(j => j.Amount);
 
-            ViewBag.TotalIncome = TotalIncome.ToString("C0");  //se pasa el total a la Viewbag para ser llamado en la vista
+            //se pasa el total a la Viewbag para ser llamado en la vista
+            ViewBag.TotalIncome = TotalIncome.ToString("C0");  
 
             //selecciona el total de Amount en dolares para 'Expense' que se encuentren en la lista SelectedTransactions
             int TotalExpense = SelectedTransactions
                 .Where(i => i.Category.Type == "Expense")
                 .Sum(j => j.Amount);
 
-            ViewBag.TotalExpense = TotalExpense.ToString("C0");//se pasa el total a la variable Viewbag.TotalExpense para ser llamado en la vista
+            //se pasa el total a la variable Viewbag.TotalExpense para ser llamado en la vista
+            ViewBag.TotalExpense = TotalExpense.ToString("C0");
            
-            //Balance
+            //Balance se hace la resta del dinero que tenemos, menos el que hemos gastado.
             int Balance = TotalIncome - TotalExpense;
+            CultureInfo culture = CultureInfo.CreateSpecificCulture("en-US");
+            culture.NumberFormat.CurrencyNegativePattern = 1;
+            ViewBag.Balance = String.Format(culture, "{0:C0}",Balance);
+
             return View();
         }
     }
