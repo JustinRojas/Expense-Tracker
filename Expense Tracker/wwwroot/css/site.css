@@ -19,12 +19,15 @@ html {
 }
 *:not(.fa-solid):not(.fa):not(e-icons){
     font-family:"Inter";
-} 
+}
 
 body {
     margin-bottom: 60px;
     background-color: black;
 }
+.main-content{
+    margin-left: 290px;
+  }
 /*
 BUTTON*/
 .btn-focus, btn-active{
@@ -108,4 +111,12 @@ BUTTON*/
 .e-input-group .e-input-group-icon:last-child, .e-input-group.e-control-wrapper .e-input-group-icon:last-child {
     font-size: 12px;
     background-color: blueviolet;
+}
+
+/*SIDEBAR*/
+#sidebar {
+    background-color: #12161d;
+    border-right: 1px dashed rgba(75,82,85,0.24);
+    padding: 10px 20px;
+    overflow:hidden;
 }
