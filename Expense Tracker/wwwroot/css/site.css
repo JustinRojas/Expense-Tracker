@@ -28,8 +28,29 @@ body {
 .main-content{
     margin-left: 290px;
   }
-/*
-BUTTON*/
+
+/*NAVBAR*/
+
+nav.navbar {
+    background-color: rgba(18, 22, 29);
+}
+    nav.navbar i {
+        padding: 10px;
+        border-radius: 50%;
+        font-size: 1.2rem;
+        cursor: pointer;
+        color: aliceblue;
+    }
+
+        nav.navbar i:hover, nav.navbar img:hover {
+            cursor: pointer;
+            background-color: #48545f14;
+            transform: scale(1.5) translateZ(0px);
+        }
+
+
+
+/*BUTTON*/
 .btn-focus, btn-active{
     outline: none !important;
     box-shadow: none;
@@ -108,8 +129,9 @@ BUTTON*/
 .e-grid {
     border: 0;
     border-radius: 5px;
+    
 }
-
+   
     .e-grid .e-gridcontent, .e-grid .e-table {
         background-color: #1a222b;
     }
@@ -122,11 +144,12 @@ BUTTON*/
         background-color: #222b33;
     }
 
-   /* BREADCRUMB*/
-   .e-breadcrumb a, .e-breadcrumb a:hover{
-       text-decoration: none !important;
-       color: inherit !important;
-   }
+
+/* BREADCRUMB*/
+.e-breadcrumb a, .e-breadcrumb a:hover {
+    text-decoration: none !important;
+    color: inherit !important;
+}
 
    /*CALENDER*/
 
